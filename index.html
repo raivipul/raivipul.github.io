@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Personal portfolio / projects site" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#7c5cff; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --container:1100px; --max-width:1200px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial; background:linear-gradient(180deg,var(--bg),#071024);color:#e6eef6}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--container);margin:0 auto;padding:32px}
+    header{position:sticky;top:12px;background:transparent;padding:8px 0;z-index:50}
+    nav{display:flex;gap:18px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#4ae8c6);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .navlinks{display:flex;gap:14px;align-items:center}
+    .navlinks a{padding:8px 10px;border-radius:10px;font-size:14px;color:var(--muted)}
+    .cta{padding:10px 14px;background:linear-gradient(90deg,var(--accent),#4ae8c6);border-radius:10px;color:#021023;font-weight:600}
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;padding:48px 0}
+    .intro h1{font-size:36px;margin:0 0 8px}
+    .intro p{color:var(--muted);line-height:1.5;margin:0 0 18px}
+    .profile-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:16px;backdrop-filter: blur(6px);box-shadow: 0 6px 20px rgba(4,8,15,0.6)}
+    .profile-photo{width:100%;height:260px;border-radius:12px;background-image:url('https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=800&q=60');background-size:cover;background-position:center}
+    .small{font-size:13px;color:var(--muted)}
+    /* projects */
+    section.projects{padding:18px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px}
+    .card p{color:var(--muted);margin:0 0 12px;font-size:14px}
+    .card .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:var(--glass);color:var(--muted)}
+    /* contact */
+    footer{padding:40px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02)}
+    .socials{display:flex;gap:12px}
+    /* responsive */
+    @media (max-width:880px){.hero{grid-template-columns:1fr;}.profile-card{order:-1}.navlinks{display:none}.mobile-toggle{display:block}}
+    .mobile-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:10px}
+    .mobile-menu{display:none;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:10px;margin-top:8px}
+    .show-menu{display:block}
+    .footer-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav>
+        <div class="brand">
+          <div class="logo">YN</div>
+          <div>
+            <div style="font-weight:700">Your Name</div>
+            <div style="font-size:12px;color:var(--muted)">Portfolio</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end">
+          <div class="navlinks">
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a class="cta" href="#contact">Hire me</a>
+          </div>
+          <button class="mobile-toggle" aria-expanded="false" id="toggleBtn">☰</button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+        <a href="#projects">Projects</a><br>
+        <a href="#about">About</a><br>
+        <a href="#contact">Contact</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h1>Hi — I'm Your Name</h1>
+          <p class="small">I build clean, accessible web apps and tools. I care about performance, delightful UX and clean code. Here are some projects and notes about what I build.</p>
+          <p>
+            <a class="cta" href="#projects">See projects</a>
+            <a style="margin-left:12px;color:var(--muted)" href="#about">Read my story</a>
+          </p>
+          <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+            <div class="tag">JavaScript</div>
+            <div class="tag">Python</div>
+            <div class="tag">Web</div>
+            <div class="tag">Open Source</div>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <div class="profile-photo" role="img" aria-label="profile image"></div>
+          <h3 style="margin-top:12px">Your Name</h3>
+          <div class="small">Frontend engineer — open source contributor — hobbyist physicist</div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <a class="tag" href="#contact">Email</a>
+            <a class="tag" href="#projects">Projects</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="projects" class="projects">
+        <h2>Selected projects</h2>
+        <div class="grid" style="margin-top:12px">
+          <article class="card">
+            <h3>Project Alpha</h3>
+            <p>Single-page app that visualizes data and runs interactive simulations. Hosted on GitHub Pages.</p>
+            <div class="tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">D3</span>
+              <span class="tag">GH-Pages</span>
+            </div>
+            <p style="margin-top:12px"><a href="#" aria-label="Open project">View repo →</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Portfolio Site</h3>
+            <p>Clean responsive portfolio template. This very site is based on a single-file HTML/CSS template for simplicity.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+            <p style="margin-top:12px"><a href="#">View demo →</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Tooling</h3>
+            <p>CLI + small helpers to automate build and deploy steps to GitHub Pages.</p>
+            <div class="tags"><span class="tag">Node</span><span class="tag">GitHub Actions</span></div>
+            <p style="margin-top:12px"><a href="#">View repo →</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" style="padding-top:18px">
+        <h2>About</h2>
+        <p class="small">Short bio. Talk about your background, what you build, and contact details. Keep it concise and link to your resume or LinkedIn.</p>
+      </section>
+
+      <section id="contact" style="padding-top:18px">
+        <h2>Contact</h2>
+        <p class="small">Want to work together? Send an email or connect on GitHub.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+          <a class="tag" href="mailto:you@example.com">you@example.com</a>
+          <a class="tag" href="#">github.com/yourname</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-row">
+        <div>© <span id="year"></span> Your Name</div>
+        <div class="socials">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // mobile menu toggle
+    const btn = document.getElementById('toggleBtn');
+    const menu = document.getElementById('mobileMenu');
+    if(btn){
+      btn.addEventListener('click', ()=>{
+        const open = menu.classList.toggle('show-menu');
+        btn.setAttribute('aria-expanded', open);
+        menu.setAttribute('aria-hidden', !open);
+      })
+    }
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    })
+  </script>
+</body>
+</html>
