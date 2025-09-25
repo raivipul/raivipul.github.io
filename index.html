@@ -42,6 +42,15 @@
     .quote-box{background:rgba(124,92,255,0.08);padding:20px;border-radius:12px;margin:24px 0;border-left:4px solid var(--accent);position:relative}
     .quote-box p{font-style:italic;margin:0;color:#e6eef6;font-size:16px;line-height:1.6}
     .quote-attribution{margin:12px 0 0 0;font-size:13px;color:var(--muted);font-style:normal}
+
+        /* education section */
+    .education-list{list-style:none;padding:0;margin:16px 0}
+    .education-item{background:linear-gradient(135deg,rgba(124,92,255,0.08),rgba(74,232,198,0.06));border:1px solid rgba(124,92,255,0.15);border-radius:12px;padding:18px;margin:12px 0;position:relative;transition:all 0.3s ease}
+    .education-item:hover{transform:translateY(-2px);border-color:rgba(124,92,255,0.3);box-shadow:0 8px 25px rgba(124,92,255,0.15)}
+    .education-item:before{content:'🎓';position:absolute;top:18px;right:18px;font-size:20px;opacity:0.7}
+    .education-degree{color:var(--accent);font-weight:600;font-size:16px;margin:0 0 4px 0}
+    .education-institution{color:#e6eef6;font-weight:500;margin:0 0 4px 0}
+    .education-years{color:var(--muted);font-size:13px;font-style:italic}
     /* experience section */
     .experience-item{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.05)}
     .experience-item:last-child{border-bottom:none;margin-bottom:0}
@@ -153,11 +162,24 @@
           <div class="quote-attribution">— Personal philosophy on quantum possibilities</div>
         </div>
         
-        <h3>Education</h3>
-        <ul>
-          <li><strong>Ph.D. in Physics</strong> — IIT Mandi (2023 – Present)</li>
-          <li><strong>M.Sc. in Physics</strong> — NIT Karnataka (2020 – 2022)</li>
-          <li><strong>B.Sc. Physics Honours</strong> — Central University of Himachal Pradesh (2015 – 2018)</li>
+
+       <h3>Education</h3>
+        <ul class="education-list">
+          <li class="education-item">
+            <div class="education-degree">Ph.D. in Physics</div>
+            <div class="education-institution">IIT Mandi</div>
+            <div class="education-years">2023 – Present</div>
+          </li>
+          <li class="education-item">
+            <div class="education-degree">M.Sc. in Physics</div>
+            <div class="education-institution">NIT Karnataka</div>
+            <div class="education-years">2020 – 2022</div>
+          </li>
+          <li class="education-item">
+            <div class="education-degree">B.Sc. Physics Honours</div>
+            <div class="education-institution">Central University of Himachal Pradesh</div>
+            <div class="education-years">2015 – 2018</div>
+          </li>
         </ul>
       </section>
 
