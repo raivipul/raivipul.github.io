@@ -86,6 +86,25 @@
                  font-size:12px;color:var(--muted);transition:all 0.3s ease;cursor:pointer}
     .profile-btn:hover{border-color:var(--accent);color:#fff}
 
+    /* Image-based profile photo (recommended) */
+.profile-photo-img{
+  width:100%;
+  height:320px;
+  border-radius:16px;
+  object-fit:cover;   /* preserve aspect ratio and crop nicely */
+  display:block;
+  margin-bottom:16px;
+}
+
+/* Mobile tweak */
+@media (max-width:880px){
+  .profile-photo-img{
+    height:220px;
+    max-width:300px;
+    margin:0 auto 16px;
+  }
+}
+
     /* Projects Grid */
     .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin:32px 0}
     .project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;
@@ -211,7 +230,8 @@
         </div>
 
         <aside class="profile-card">
-          <div class="profile-photo" aria-hidden="true"></div>
+          <!-- <div class="profile-photo" aria-hidden="true"></div> -->
+          <img src="profile.jpg" alt="Vipul Rai — profile photo" class="profile-photo-img" loading="lazy">
           <div class="profile-info">
             <h3>Vipul Rai</h3>
             <div class="role">Senior Research Fellow</div>
