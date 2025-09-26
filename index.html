@@ -156,16 +156,37 @@
     /* Footer */
     footer{margin-top:80px;padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted)}
 
-    /* Mobile Responsive */
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr;text-align:center}
-      .profile-card{order:-1;max-width:300px;margin:0 auto}
-      .navlinks{display:none}
-      .contact-grid{grid-template-columns:1fr}
-      .timeline{padding-left:16px}
-      .timeline::before{left:8px}
-      .timeline-item::before{left:-20px}
-    }
+    /* Mobile Menu */
+    .mobile-toggle{display:none;background:var(--glass);border:1px solid var(--border);
+               padding:12px;border-radius:10px;cursor:pointer;color:var(--muted);
+               transition:all 0.3s ease}
+   .mobile-toggle:hover{border-color:var(--accent);color:#fff}
+   .mobile-menu{display:none;position:absolute;top:100%;right:20px;
+             background:rgba(10,14,26,0.95);backdrop-filter:blur(20px);
+             border:1px solid var(--border);border-radius:12px;padding:16px;
+             min-width:200px;box-shadow:var(--shadow)}
+   .mobile-menu.show{display:block}
+   .mobile-menu .nav-item{display:block;padding:12px 16px;margin:4px 0;
+                       border-radius:8px;cursor:pointer;transition:all 0.3s ease}
+   .mobile-menu .nav-item:hover{background:var(--glass);color:#fff}
+   .mobile-menu .nav-item.active{background:var(--accent);color:#0a0e1a}
+
+/* Mobile Responsive */
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr;text-align:center;padding:140px 0 60px}
+  .profile-card{order:-1;max-width:300px;margin:0 auto}
+  .navlinks{display:none}
+  .mobile-toggle{display:block}
+  .contact-grid{grid-template-columns:1fr}
+  .timeline{padding-left:16px}
+  .timeline::before{left:8px}
+  .timeline-item::before{left:-20px}
+  /* Ensure content sections have proper mobile padding */
+  .page .container{padding-top:120px}
+  .hero{padding-top:140px}
+}
+    
+    
 
     /* Loading Animation */
     .loading{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg);
@@ -194,16 +215,27 @@
           <div style="font-size:12px;color:var(--muted)"></div>
         </div>
       </div>
-      <div class="navlinks">
-        <!-- pass `this` to showPage so script doesn't rely on global event -->
-        <div class="nav-item active" onclick="showPage('home', this)">Home</div>
-        <div class="nav-item" onclick="showPage('projects', this)">Projects</div>
-        <div class="nav-item" onclick="showPage('about', this)">About</div>
-        <div class="nav-item" onclick="showPage('experience', this)">Experience</div>
-        <div class="nav-item" onclick="showPage('publications', this)">Publications</div>  <!-- <-- new -->
-        <div class="nav-item" onclick="showPage('contact', this)">Contact</div>
-        <!-- <div class="cta" onclick="showPage('contact', this)">Hire me</div> -->
-      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;position:relative">
+  <div class="navlinks">
+    <div class="nav-item active" onclick="showPage('home', this)">Home</div>
+    <div class="nav-item" onclick="showPage('projects', this)">Projects</div>
+    <div class="nav-item" onclick="showPage('about', this)">About</div>
+    <div class="nav-item" onclick="showPage('experience', this)">Experience</div>
+    <div class="nav-item" onclick="showPage('publications', this)">Publications</div>
+    <div class="nav-item" onclick="showPage('contact', this)">Contact</div>
+  </div>
+  
+  <button class="mobile-toggle" onclick="toggleMobileMenu()" id="mobileToggle">☰</button>
+  
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="nav-item active" onclick="showPage('home', this); closeMobileMenu()">Home</div>
+    <div class="nav-item" onclick="showPage('projects', this); closeMobileMenu()">Projects</div>
+    <div class="nav-item" onclick="showPage('about', this); closeMobileMenu()">About</div>
+    <div class="nav-item" onclick="showPage('experience', this); closeMobileMenu()">Experience</div>
+    <div class="nav-item" onclick="showPage('publications', this); closeMobileMenu()">Publications</div>
+    <div class="nav-item" onclick="showPage('contact', this); closeMobileMenu()">Contact</div>
+  </div>
+</div>
     </nav>
   </header>
 
@@ -500,6 +532,41 @@
 
   <script>
     // Page Management
+     // Mobile Menu Functions
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const toggle = document.getElementById('mobileToggle');
+      if (menu && toggle) {
+        const isOpen = menu.classList.toggle('show');
+        toggle.textContent = isOpen ? '✕' : '☰';
+        toggle.style.background = isOpen ? 'var(--accent)' : 'var(--glass)';
+        toggle.style.color = isOpen ? '#0a0e1a' : 'var(--muted)';
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const toggle = document.getElementById('mobileToggle');
+      if (menu && toggle) {
+        menu.classList.remove('show');
+        toggle.textContent = '☰';
+        toggle.style.background = 'var(--glass)';
+        toggle.style.color = 'var(--muted)';
+      }
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById('mobileMenu');
+      const toggle = document.getElementById('mobileToggle');
+      if (menu && toggle && menu.classList.contains('show')) {
+        if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+          closeMobileMenu();
+        }
+      }
+    });
+
+    
     let currentPage = 'home';
 
     // showPage accepts optional element (el) to mark active nav item
